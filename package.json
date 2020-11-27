@@ -1,0 +1,23 @@
+{
+  "name": "lit-button-simple",
+  "version": "0.0.0",
+  "description": "Webcomponent lit-button-simple following open-wc recommendations",
+  "author": "lit-button-simple",
+  "license": "MIT",
+  "main": "index.js",
+  "module": "index.js",
+  "scripts": {
+    "start": "web-dev-server --app-index demo/index.html --node-resolve --open --watch",
+    "test": "web-test-runner --coverage",
+    "test:watch": "web-test-runner --watch"
+  },
+  "dependencies": {
+    "lit-element": "^2.2.1",
+    "lit-html": "^1.1.2"
+  },
+  "devDependencies": {
+    "@open-wc/testing": "^2.0.0",
+    "@web/dev-server": "^0.0.12",
+    "@web/test-runner": "^0.7.41"
+  }
+}
