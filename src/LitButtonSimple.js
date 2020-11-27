@@ -1,37 +1,49 @@
 import { html, css, LitElement } from 'lit-element';
 
+import { LitButtonSimpleStyle } from './LitButtonSimpleStyle.js';
+
 export class LitButtonSimple extends LitElement {
   static get styles() {
-    return css`
-      :host {
-        display: block;
-        padding: 25px;
-        color: var(--lit-button-simple-text-color, #000);
-      }
-    `;
+    return LitButtonSimpleStyle;
   }
 
   static get properties() {
     return {
-      title: { type: String },
-      counter: { type: Number },
+      textContent: { type: String },
+      classButton: { type: String },
+      slotInButton:{ type: Boolean }
     };
   }
 
   constructor() {
     super();
-    this.title = 'Hey there';
-    this.counter = 5;
-  }
-
-  __increment() {
-    this.counter += 1;
+    this.textContent = "Default Text";
   }
 
   render() {
     return html`
-      <h2>${this.title} Nr. ${this.counter}!</h2>
-      <button @click=${this.__increment}>increment</button>
+      ${!this.slotInButton 
+        ? html`
+            <button
+                @click=${this._hasBeenClicked}
+                class="button ${ this.classButton }"
+            >
+                ${ this.textContent }
+            </button>
+        `
+        : html`
+            <button
+                @click=${this._hasBeenClicked}
+                class="button ${ this.classButton }"
+            >
+              <slot name="content"></slot>
+            </button>
+        `
+      }
     `;
+  }
+
+  _hasBeenClicked() {
+    console.log('Hola');
   }
 }
