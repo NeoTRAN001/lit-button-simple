@@ -15,11 +15,21 @@
     import { html, render } from 'lit-html';
     import '../lit-button-simple.js';
 
-    const title = 'Hello owc World!';
     render(
       html`
-        <lit-button-simple .title=${title}>
-          some more light-dom
+        <lit-button-simple></lit-button-simple>
+        <lit-button-simple textContent="Small"   classButton="small"></lit-button-simple>
+        <lit-button-simple textContent="Large"   classButton="large"></lit-button-simple>
+        <lit-button-simple textContent="Success" classButton="success"></lit-button-simple>
+        <lit-button-simple textContent="Warning" classButton="warning"></lit-button-simple>
+        <lit-button-simple textContent="Danger"  classButton="danger"></lit-button-simple>
+        <lit-button-simple textContent="Info"    classButton="info"></lit-button-simple>
+        <lit-button-simple textContent="Large Info" classButton="large info"></lit-button-simple>
+        
+        <lit-button-simple textContent="Danger"  classButton="danger radius"></lit-button-simple>
+
+        <lit-button-simple slotInButton classButton="success">
+          <h1 slot="content">Slot Content</h1>
         </lit-button-simple>
       `,
       document.querySelector('#demo')
