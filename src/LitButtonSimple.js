@@ -11,13 +11,15 @@ export class LitButtonSimple extends LitElement {
     return {
       textContent: { type: String },
       classButton: { type: String },
-      slotInButton:{ type: Boolean }
+      slotInButton:{ type: Boolean },
+      eventName:   { type: String }
     };
   }
 
   constructor() {
     super();
     this.textContent = "Default Text";
+    this.eventName = "lit-component-default-button-simple";
   }
 
   render() {
@@ -25,7 +27,7 @@ export class LitButtonSimple extends LitElement {
       ${!this.slotInButton 
         ? html`
             <button
-                @click=${this._hasBeenClicked}
+                @click=${this._customDispatch}
                 class="button ${ this.classButton }"
             >
                 ${ this.textContent }
@@ -33,7 +35,7 @@ export class LitButtonSimple extends LitElement {
         `
         : html`
             <button
-                @click=${this._hasBeenClicked}
+                @click=${this._customDispatch}
                 class="button ${ this.classButton }"
             >
               <slot name="content"></slot>
@@ -43,7 +45,10 @@ export class LitButtonSimple extends LitElement {
     `;
   }
 
-  _hasBeenClicked() {
-    console.log('Hola');
+  _customDispatch() {
+    this.dispatchEvent(new CustomEvent(this.eventName, {
+      bubbles: true,
+      composed: true,
+    }));
   }
 }
